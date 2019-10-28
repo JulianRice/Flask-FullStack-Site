@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>UTA - Home Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/css/main.css"/>
+</head>
+<body>
+
+<div class="container-fluid text-center top-container">
+    <img src="static/images/uta-logo-200.png">
+</div>
+<div class="container">
+    {% include "includes/nav.html" %}
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1>Welcome to Universal Tech Academy.</h1>
+
+            <!-- If the user is logged in, show this -->
+            {% if login %}
+            <h3>Let's get started.</h3>
+
+            <!-- Else, show them this -->
+            {% else %}
+            <p>Already registered? <a href="{{ url_for('login') }}">Login</a></p>
+            
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+<div>
+    <footer>
+        <p>Copyright &copy; 2019. Goomba. All Rights Reserved</p>
+    </footer>
+</div>
+</body>
+</html>

@@ -3,7 +3,7 @@
     <h1>Course Offerings</h1>
 
     <!--  Display the Term and Year here --->
-    <h3>Term: Spring 2019</h3>
+    <h3>Term: Spring {{ term }}</h3>
 
     <div>
         <table class="table table-hover">
@@ -19,57 +19,24 @@
             </thead>
             <tbody>
 
-            <!-- Construct the rest of courses here -->
+            <!-- Construct HTML based on JSON data from course_data in routes.py -->
+            {% for data in course_data %}
             <tr>
-                <td scope='row'>1111</td>
-                <td>PHP 111</td>
-                <td>Intro to PHP</td>
-                <td>3</td>
-                <td>Fall, Spring</td>
+                <td scope='row'>{{ data["courseID"] }}</td>
+                <td>{{ data["title"] }}</td>
+                <td>{{ data["descriptions"] }}</td>
+                <td>{{ data["credits"] }}</td>
+                <td>{{ data["term"] }}</td>
                 <td>
-                    <button>Enroll</button>
+                    <form action="{{ url_for('enrollment') }}" method="POST"> <!-- Could be GET or POST -->
+                        <input type="hidden" name="courseID" value="{{ data['courseID'] }}">
+                        <input type="hidden" name="title" value="{{ data['title'] }}">
+                        <input type="hidden" name="term" value="{{ data['term'] }}">
+                        <button>Enroll</button>
+                    </form>
                 </td>
             </tr>
-            <tr>
-                <td scope='row'>2222</td>
-                <td>Java 1</td>
-                <td>Intro to Java Programming</td>
-                <td>4</td>
-                <td>Spring</td>
-                <td>
-                    <button>Enroll</button>
-                </td>
-            </tr>
-            <tr>
-                <td scope='row'>3333</td>
-                <td>Adv PHP 201</td>
-                <td>Advanced PHP Programming</td>
-                <td>3</td>
-                <td>Fall</td>
-                <td>
-                    <button>Enroll</button>
-                </td>
-            </tr>
-            <tr>
-                <td scope='row'>4444</td>
-                <td>Angular 1</td>
-                <td>Intro to Angular</td>
-                <td>3</td>
-                <td>Fall, Spring</td>
-                <td>
-                    <button>Enroll</button>
-                </td>
-            </tr>
-            <tr>
-                <td scope='row'>5555</td>
-                <td>Java 2</td>
-                <td>Advanced Java Programming</td>
-                <td>4</td>
-                <td>Fall</td>
-                <td>
-                    <button>Enroll</button>
-                </td>
-            </tr>
+            {% endfor %}
             </tbody>
         </table>
     </div>

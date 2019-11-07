@@ -1,0 +1,33 @@
+| The Request Object
+Accessing Query String (GET)
+request.args.get(<field_name>)
+request.args[<field_name>]
+
+Accessing Form Data (POST)
+request.form.get(<field_name>)
+request.form[<field_name>]
+
+| The Response Object
+class flask.Response(
+	response = None,
+	status = None,
+	headers = None,
+	mimetype = None,
+	content_type = None,
+	direct_passthrough = False
+)
+*Most commonly used arguments: response, mimetype, and content_type
+
+'pip freeze > requirements.txt'
+
+Updates our list with what we require for this
+
+| Setting up a MongoDB Database
+MONGODB_SETTINGS = { 'db' : 'UTA_Enrollment' }
+
+| Importing the MongoEngine
+from flask_mongoengine import MongoEngine
+
+|Initializing the database object
+db = MongoEnigne()
+db.init_app(app)

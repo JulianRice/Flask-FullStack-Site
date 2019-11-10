@@ -31,3 +31,59 @@ from flask_mongoengine import MongoEngine
 |Initializing the database object
 db = MongoEnigne()
 db.init_app(app)
+
+| Run Database on Terminal
+/Users/julianrice/Downloads/mongodb-macos-x86_64-4.2.1/bin/mongod
+
+| MongoDB Shell Commands
+db.createCollection(<collection>)
+db.<collection>.insert( {...} )
+db.<collection>.insertMany( {...} )
+
+| Import JSON Data using MongoImport.exe/Com Line
+mongoimport --db <DB> -collection <collection> --file <file>
+mongoimport -d <DB> -c <collection> --file <file>
+
+| Data Model Creation (Python)
+class ModelName(db.Document):
+	field1 = db.IntField()
+	field2 = db.StringField()
+	...
+	fieldn = db.StringField()
+
+| WTForms Examples
+- WTFORMS Python -
+class LoginForm(FlaskForm):
+	email = StringField('Email')
+	password = StringField('Password')
+	submit = SubmitField('Login')
+
+- WTFORMS - (login.html etc)
+<form>
+	{{ form.hidden_tag() }}
+	{{ form.username }}
+	{{ form.email }}
+	{{ form.password }}
+</form>
+
+- STANDARD HTML FORM -
+<form>
+	<input 	id = "csrf_token"
+			type = "hidden"
+			name = "csrf_token"
+			value = "ImFmMzg50...GU4Yjkw">
+	<input type = "text" name = "username">
+	<input type = "email" name = "email">
+	<input type = "password" name = "password">
+</form>
+
+| Flask-Security Extension
+Provides common security and authentication features:
+• Session-based authentication
+• Password hashing
+• Basic HTTP and token-based authentications
+• User registration
+• Login tracking (Flask-Login)
+Also supports data persistency for Flask-SQLAlchemy, Flask-MongoEngine, flask-peewee, and PonyORM.
+
+pip freeze > .\requirements.txt

@@ -3,7 +3,10 @@
     <h2>New User Registration</h2>
 
     <div class="container">
-        <form name="register" action="register.php" method="get">
+        <form name="register" action="" method="post">
+            {{ form.hidden_tag() }}
+
+
             <label for="username"><b>Username</b></label>
             <input type="text" placeholder="Enter Username" name="username" required>
             <br>

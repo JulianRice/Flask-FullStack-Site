@@ -51,6 +51,8 @@ class ModelName(db.Document):
 	...
 	fieldn = db.StringField()
 
+/Users/julianrice/Downloads/mongodb-macos-x86_64-4.2.1/bin/mongoimport --jsonArray --db UTA_Enrollment --collection user --file /Users/julianrice/Downloads/Ex_Files_Full_Stack_Dev_Flask/Exercise\ Files/models/users.json 
+
 | WTForms Examples
 - WTFORMS Python -
 class LoginForm(FlaskForm):
@@ -87,3 +89,10 @@ Provides common security and authentication features:
 Also supports data persistency for Flask-SQLAlchemy, Flask-MongoEngine, flask-peewee, and PonyORM.
 
 pip freeze > .\requirements.txt
+
+| Werkzeug Library (WSGI Web Application)
+Hashing
+generate_password_hash('password')
+
+Unhashing
+check_password_hash(password, 'password')

@@ -1,22 +1,49 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h2>New User Registration</h2>
-
     <div class="container">
-        <form name="register" action="" method="post">
-            {{ form.hidden_tag() }}
-
-
-            <label for="username"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="username" required>
-            <br>
-            <label for="email"><b>Email</b></label>
-            <input type="text" placeholder="Enter Email" name="email" required>
-            <br>
-            <label for="password"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" required>
-            <br class="clear">
-            <input class="btn-submit" type="submit" name="submit">
+        <form name="register" action="" method="post" novalidate>
+            <fieldset class="form-group">
+                <legend>{{ title }}</legend>
+                {{ form.hidden_tag() }}
+                <p>
+                    {{ form.firstName.label }}
+                    {{ form.firstName(size=20) }}
+                    {% for error in form.firstName.errors %}
+                        <span class="error-message">{{ error }}</span>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ form.lastName.label }}
+                    {{ form.lastName(size=20) }}
+                    {% for error in form.lastName.errors %}
+                        <span class="error-message">{{ error }}</span>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ form.email.label }}
+                    {{ form.email(size=35) }}
+                    {% for error in form.email.errors %}
+                        <span class="error-message">{{ error }}</span>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ form.password.label }}
+                    {{ form.password(size=20) }}
+                    {% for error in form.password.errors %}
+                        <span class="error-message">{{ error }}</span>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ form.password2.label }}
+                    {{ form.password2(size=20) }}
+                    {% for error in form.password2.errors %}
+                        <span class="error-message">{{ error }}</span>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ form.submit() }}
+                </p>
+            </fieldset>
         </form>
     </div>
 {% endblock %}

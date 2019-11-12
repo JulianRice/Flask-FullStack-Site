@@ -1,5 +1,5 @@
 from application import app, db
-from flask import render_template, request, json, Response, redirect, flash
+from flask import render_template, request, json, Response, redirect, flash, url_for
 from application.models import User, Course, Enrollment
 from application.forms import LoginForm, RegisterForm
 
@@ -18,20 +18,45 @@ def index():
 
 @app.route("/courses/")
 @app.route("/courses/<term>")
-def courses(term="2019"):
-    #Create variable named course_data and pass the above data into courses.html
-    return render_template("courses.html", course_data=course_data, courses=True, term=term) 
+def courses(term=None):
+    if term == None:
+        term = "2019"
+    classes = Course.objects.all()
+    #classes = Course.objects.order_by("+courseID") # + is ascending order, - is descending
 
-@app.route("/register")
+    #Create variable named course_data and pass the above data into courses.html
+    return render_template("courses.html", course_data=classes, courses=True, term=term) 
+
+@app.route("/register", methods=["GET", "POST"])
 def register():
-    return render_template("register.html", register=True)
+    form = RegisterForm()
+    if (form.validate_on_submit()):
+        user_id     = User.objects.count()
+        user_id    += 1
+
+        email       = form.email.data
+        password    = form.password.data
+        firstName   = form.firstName.data
+        lastName    = form.lastName.data
+        # username    = form.username.data
+
+        user = User(user_id=user_id, email=email, first_name=firstName, last_name=lastName)
+        user.SetPassword(password)
+        user.save()
+        flash('You have successfully registered! Congrats!')
+        return redirect(url_for('index'))
+    return render_template("register.html", register=True, form=form, title="Register")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
     form = LoginForm()
     if (form.validate_on_submit()):
-        if (request.form.get("email") == "test@uta.com"):   
-            flash("You have successfully logged in!", "success")
+        email       = form.email.data
+        password    = form.password.data
+
+        user = User.objects(email=email).first()
+        if user and user.GetPassword(password):
+            flash(f"{ user.first_name }, you have successfully logged in!", "success")
             return redirect("/index")
         else:
             flash("Sorry, something went wrong", "danger")
@@ -40,9 +65,9 @@ def login():
 @app.route("/enrollment", methods=["GET", "POST"])
 def enrollment():
     #When using GET instead of POST, use request.args.get instead of request.form.get()
-    id = request.form.get('courseID')
-    title = request.form.get('title')
-    term = request.form.get('term')
+    id      = request.form.get('courseID')
+    title   = request.form.get('title')
+    term    = request.form.get('term')
     return render_template("enrollment.html", enrollment=True, data={"id":id, "title":title, "term":term})
 
 @app.route("/api/")

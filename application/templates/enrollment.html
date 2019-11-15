@@ -17,18 +17,17 @@
                         <th scope="col">Description</th>
                         <th scope="col">Credits</th>
                         <th scope="col">Term</th>
-                        <th scope="col">Enroll</th>
                     </tr>
                     </thead>
                     <tbody>
 
                     {% for class in classes %}
                     <tr>
-                        <td scope='row'>{{ class["courseID"] }}</td>
-                        <td>{{ class["title"] }}</td>
-                        <td>{{ class["descriptions"] }}</td>
-                        <td>{{ class["credits"] }}</td>
-                        <td>{{ class["term"] }}</td>
+                        <td scope='row'>{{ class.r2["courseID"] }}</td>
+                        <td>{{ class.r2["title"] }}</td>
+                        <td>{{ class.r2["descriptions"] }}</td>
+                        <td>{{ class.r2["credits"] }}</td>
+                        <td>{{ class.r2["term"] }}</td>
                     </tr>
                     {% endfor %}
                     </tbody>

@@ -96,3 +96,11 @@ generate_password_hash('password')
 
 Unhashing
 check_password_hash(password, 'password')
+
+| Perform Join Queries on Multiple Collections:
+$aggregate
+
+Pipeline Stages
+$lookup - performs a left outer join
+$match  - filters documents
+$unwind - deconstructs an array field

@@ -65,10 +65,20 @@ def login():
 @app.route("/enrollment", methods=["GET", "POST"])
 def enrollment():
     #When using GET instead of POST, use request.args.get instead of request.form.get()
-    id      = request.form.get('courseID')
-    title   = request.form.get('title')
+    courseID      = request.form.get('courseID')
+    courseTitle   = request.form.get('title')
+    user_id = 1
+    if (courseID):
+        if Enrollment.objects(user_id=user_id, courseID=courseID):
+            flash(f"You already registered for {courseTitle}!", "danger")
+            return redirect(url_for("courses"))
+        else:
+            Enrollment(user_id=user_id, courseID=courseID)
+            flash(f"You have enrolled in {courseTitle}!", "success")
+
+    classes = None
     term    = request.form.get('term')
-    return render_template("enrollment.html", enrollment=True, data={"id":id, "title":title, "term":term})
+    return render_template("enrollment.html", enrollment=True, classes=classes, title="Enrollment")
 
 @app.route("/api/")
 @app.route("/api/<idx>")

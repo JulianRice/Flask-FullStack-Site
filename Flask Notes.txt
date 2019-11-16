@@ -121,3 +121,20 @@ Managing user logged-in state using user_loader()
 Using the LoginManager class to manage login state
 Logging out with logout_user()
 flask-login.readthedocs.io/en/latest
+
+| HTTP Verbs and CRUD Operations
+HTTP V
+POST	Create	Insert Data
+GET		Read	Fetch Data
+PUT		Update	Replace existing data
+DELETE	Delete	Remove data
+
+Flask-RESTPlus - Adds support for creating REST APIs
+Decorate classes and methods with it
+Can add multiple endpoints in route() decorator
+> pip install flask-restplus
+> pip freeze > .\requirements.txt
+
+Postman - API development environment for testing APIs
+Most-used REST client in the world
+

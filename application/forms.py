@@ -5,18 +5,18 @@ from application.models import User
 
 class LoginForm(FlaskForm):
     #The labels for the form, not the actual content
-    email       = StringField("Email",      validators=[DataRequired(), Email()])
-    password    = PasswordField("Password",   validators=[DataRequired(), Length(min=6,max=15)])
+    email       = StringField("Email",              validators  = [DataRequired(), Email()])
+    password    = PasswordField("Password",         validators  = [DataRequired(), Length(min=6,max=15)])
     rememberMe  = BooleanField("Remember Me")
     submit      = SubmitField("Login")
 
 class RegisterForm(FlaskForm):
-    email       = StringField("Email",              validators=[DataRequired(), Email()])
-    #username    = StringField("Username",           validators=[DataRequired()])
-    password    = PasswordField("Password",           validators=[DataRequired(), Length(min=6,max=15)])
-    password2   = PasswordField("Confirm Password",   validators=[DataRequired(), Length(min=6,max=15), EqualTo('password')])
-    firstName   = StringField("First Name",         validators=[DataRequired(), Length(min=2,max=55)])
-    lastName    = StringField("Last Name",          validators=[DataRequired(), Length(min=2,max=55)])
+    email       = StringField("Email",              validators  = [DataRequired(), Email()])
+    #username    = StringField("Username",          validators  = [DataRequired()])
+    password    = PasswordField("Password",         validators   = [DataRequired(), Length(min=6,max=15)])
+    password2   = PasswordField("Confirm Password", validators  = [DataRequired(), Length(min=6,max=15), EqualTo('password')])
+    firstName   = StringField("First Name",         validators  = [DataRequired(), Length(min=2,max=55)])
+    lastName    = StringField("Last Name",          validators  = [DataRequired(), Length(min=2,max=55)])
     submit      = SubmitField("Register")
 
     def validate_email(self, email):

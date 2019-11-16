@@ -60,10 +60,10 @@ input[type=text]:focus, input[type=password]:focus {
     border-bottom:2px solid #0f0f0f;
 }
 .bottom-container {
-    background: #333;
+    background: #A95F2D;
     padding:5px;
-    border-top:2px solid #0f0f0f;
-    /*position:absolute;*/
+    border-top:2px solid #A95F2D;
+    position:absolute;
     bottom:0;
 }
 

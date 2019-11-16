@@ -104,3 +104,20 @@ Pipeline Stages
 $lookup - performs a left outer join
 $match  - filters documents
 $unwind - deconstructs an array field
+$sort   - sorts a field ascending or descending
+
+| Flask-Session
+The *session* object stores information specific to the user. The implementation is on top of cookies and the cookies are signed cryptographically.
+
+session['key'] = value		#Setting a session
+session.get('key')			#Getting a session
+
+session.pop('key', None)	#Destroying a sessions
+session['key'] = False		#Destroying a session
+
+| Flask-Login Extension
+Sessions and state management using Flask-Login
+Managing user logged-in state using user_loader()
+Using the LoginManager class to manage login state
+Logging out with logout_user()
+flask-login.readthedocs.io/en/latest

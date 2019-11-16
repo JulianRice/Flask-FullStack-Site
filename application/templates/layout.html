@@ -9,10 +9,14 @@
 <body>
 
 <div class="container-fluid text-center top-container">
-    <img src="{{ url_for('static', filename='images/uta-logo-200.png')}}">
+    <img class="cover" src="{{ url_for('static', filename='images/GoombaCover.png')}}">
 </div>
 <div class="container">
     {% include "includes/nav.html" %}
+    {% if session['username'] %}
+        <span class="user">Welcome, {{ session['username'] }}</span>
+    {% endif %}
+
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             {% for category, message in messages %}
